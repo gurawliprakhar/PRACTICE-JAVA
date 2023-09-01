@@ -404,6 +404,317 @@ public class Test {
     	}
     	return reverseStringRecursion(s,r+s.charAt(i),i-1);
     }
+	static String PalindromeRecursion(String s, String r, int i) {
+		if ( i < 0) {
+			return r;
+		}
+		return PalindromeRecursion(s,r+s.charAt(i),i-1);
+	}
+
+	static boolean isPalindromeRecursion(String s, int i, int j) {
+		if(s.charAt(i) != s.charAt(j)) {
+			return false;
+		}if(j <= i) {
+			return true;
+		}
+	 return	isPalindromeRecursion(s,i+1,j-1);
+	}
+	
+	static int sumOfEleREcursion(int[] ar, int i) {
+		if(i== ar.length) {
+			return 0;
+		}return ar[i] + sumOfEleREcursion(ar,i+1);
+	}
+	
+	static int josephusRecursion(int n, int k) {
+		if(n==1) {
+	     return 0;
+		}
+		return (josephusRecursion(n-1,k) + k)%n;
+	}
+	
+    static void balanceParenthesisRecursion(char[] ar, int n, int i, int o, int c) {
+	     if (i == ar.length) {
+	         System.out.println(ar);
+	          return;
+	        }
+	        
+	      if (o < n) {
+	         ar[i] = '(';
+	          balanceParenthesisRecursion(ar, n, i + 1, o + 1, c);
+	        }
+	       if (c < o) {
+	          ar[i] = ')';
+	          balanceParenthesisRecursion(ar, n, i + 1, o, c + 1);
+	        }
+	    }
+
+    static String reverseString(String s) {
+    	String res = "";
+    	
+    	for(int i=0; i<s.length();i++) {
+    		res = s.charAt(i) + res;
+    	}
+    	
+    	return res;
+    }
+    
+    static boolean isPalindrome(String s) {
+    	int i=0, j=s.length()-1;
+    	
+    	while(i < j) {
+    		if(s.charAt(i) == s.charAt(j)) {
+    			i++;
+    			j--;
+    		}else {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+	
+	static int countVowels(String s) {
+		int count = 0;
+		
+		for(int i=0; i< s.length(); i++) {
+			char ch = s.charAt(i);
+			if(ch=='a'|| ch=='e'|| ch=='e'|| ch=='i'||ch=='u' ||ch=='A'|| ch=='E'|| ch=='E'|| ch=='I'||ch=='U') {
+				count++;
+			}
+		}
+		return count;
+	}
+    
+    static int countUpperCase(String s) {
+    	int uc = 0;
+    	
+    	for(int i=0; i < s.length();i++) {
+    		char ch = s.charAt(i);
+    		if(ch >= 'A'  &&  ch <='Z' ) {
+    			uc++;
+    		}
+    	}
+    	return uc;
+    }
+    
+    static int countSpace(String s) {
+    	int count = 0; 
+       for(int i=0; i<s.length();i++) {
+    	   
+    	  if(s.charAt(i) == ' ') {
+    		  count++;
+    	     }
+    	   }
+       return count;
+       }
+
+    static String replaceToSpec(String s) {
+    	String res = "";
+    	
+    	for(int i = 0; i< s.length();i++) {
+    		char ch = s.charAt(i);
+    		if(ch >= 97 && ch <=122) {
+    			res = res + "#";
+    		}else {
+    			res = res + "#";
+    		}
+    	}
+    	return res;
+    }
+    
+    static void getAllSubstringRecursion(String s, String ans) {
+    	 ArrayList<String> al = new ArrayList<String>();
+    	if(s.length() == 0) {
+    		al.add(ans);
+    		return;
+    	}
+    	getAllSubstringRecursion(s.substring(1),ans+s.charAt(0));
+    	
+    	getAllSubstringRecursion(s.substring(1),ans);
+    	
+    }
+   
+    
+    //for keypad all possible 
+	static String[] keypad = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+
+    static void possibleWords(String s, String ans) {
+
+        if (s.length() == 0) {
+            System.out.println(ans);
+            return;
+        }
+        String key = keypad[s.charAt(0) - '0'];
+
+        for (int i = 0; i < key.length(); i++) {
+            possibleWords(s.substring(1), ans + key.charAt(i));
+        }
+    }
+
+    static void permutationRecursion(char[]ar , int fi) {
+    	if(fi== ar.length-1) {
+    		System.out.println(ar);
+    	return;
+    	}
+    	for(int i = fi; i<ar.length;i++) {
+    		swap(ar,i,fi);
+    		permutationRecursion(ar,fi+1);
+    		swap(ar,i,fi);
+    	}
+    }
+    
+    static void swap(char[]ar, int i, int fi) {
+      char temp = ar[i];	
+      ar[i] = ar[fi];
+      ar[fi] = temp;
+    }
+    
+    static  int maxPiecesrecursion(int n, int a, int b , int c) {
+    	if(n == 0) {
+    		return 0;
+    	}else if(n < 0){
+    		return -1;
+    	}
+    	int temp1 = maxPiecesrecursion(n-a,a,b,c);
+    	int temp2 = maxPiecesrecursion(n-b,a,b,c);
+    	int temp3 = maxPiecesrecursion(n-c,a,b,c);
+    	
+    	int pieces = Math.max(temp3,Math.max(temp1,temp2));
+
+    	if(pieces == -1) {
+    		return -1;
+    	}
+    	
+    	return pieces +1;
+    }
+    
+    static String toUpperCase(String s) {
+    	String res = "";
+    	
+    	for(int i =0; i<s.length();i++) {
+    		char ch = s.charAt(i);
+    		
+    		if (ch >= 'a' && ch<='z') {
+    			res = res + (char)(ch-32);	
+			}else {
+				res = res +ch;
+			}
+    	}
+    	
+    	return res;
+    }
+    
+    static String trim(String s) {
+    	int si = 0, ei = 0;
+    	for( int i = 0; i<= s.length(); i++) {
+        if(s.charAt(i) != ' ') {
+        	si = i;
+        	break;
+        }
+      }
+    	
+    	for( int i = s.length()-1; i >= 0 ; i--) {
+       
+            if(s.charAt(i) != ' ') {
+            	ei = i;
+            	break;
+            }
+          }
+    	
+    	String res = "";
+    	for (int i = si; i <= ei; i++) {
+			res = res + s.charAt(i);
+		}
+    	return res;
+    }
+    
+    static int countSubsetRecursion(int[] ar, int sum,int i) {
+    	if(sum == 0) {
+    		return 1;
+    	}if(sum < 0) {
+    		return 0;
+    	}if(i == ar.length) {
+    		return 0;
+    	}
+    	
+    	return countSubsetRecursion(ar,sum-ar[i],i+1)  + countSubsetRecursion(ar, sum,i+1);
+    }
+    
+    static boolean isLuckyNumberRecursion(int n, int counter) {
+    	if(n<counter) {
+    		return true;
+    	}if(n%counter == 0) {
+    		return false;
+    	}
+    
+     return isLuckyNumberRecursion(n-(n/counter),counter+1);
+    
+    
+    }
+   
+    static void towerOfHanoi(int n, char src, char aux ,char dest) {
+    	if(n==1) {
+    		System.out.println(src + " -> " + dest);
+    		return;
+    	}
+    	towerOfHanoi(n-1,src,dest,aux);
+    	towerOfHanoi(1,src,aux,dest);
+    	towerOfHanoi(n-1,aux,src,dest);
+    }
+    
+    static long powRecursion(int x, int y) {
+    	if(y == 0) {
+    		return 1;
+    	}if(y%2 == 0) {
+    		long res = powRecursion(x,y/2);
+    	   return res*res;
+       }else {
+    	   return powRecursion(x,y-1) * x;
+       }
+    }
+   
+    static String numericSum(String s) {
+    	String res = "";
+    	int sum = 0;
+      for(int i=0; i<s.length();i++) {
+    	  char ch = s.charAt(i);
+    	  
+    	  if(ch >= '0' && ch <= '9') {
+    		  sum = sum + ch;
+    	  }else {
+    		  res = res + ch;
+    	  }
+      }
+    	
+    	
+    	return res+sum;
+    }
+    
+    //REPLACE WORDS IN GIVEN STRING
+    static String findString(String s,String t) {
+    	int i=0,j=0;
+    	
+    	while(i<s.length() && j<t.length()) {
+    		 if(s.charAt(i) == t.charAt(j)) {
+    			 j++;
+    		}else {
+    			i++;
+    		}
+    	}
+    	
+    	return j == t.length() ? "Yes" : "No";
+    }
+    
+    static void printAllSubstring(String s,int k) {
+    	
+    	for (int i=0; i <= s.length()-k;i++) {
+    		String t  = "";
+    		for(int j=i; j<i+4; j++) {
+    			t = t+s.charAt(j);
+    		}
+    		System.out.println(t);
+    	}
+    }
      
      public static void main(String[] args) {
  		Scanner scan  = new Scanner(System.in);	
